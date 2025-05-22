@@ -3,6 +3,8 @@ import pandas as pd
 from scipy.stats import skew
 from smolagents import CodeAgent, LiteLLMModel, tool
 
+from proximity_check import proximity_check
+
 # ======== Real Compilot API Tool ========
 @tool
 def call_compilot(public_key: str) -> str:
@@ -40,7 +42,7 @@ model = LiteLLMModel(
 )
 
 agent = CodeAgent(
-    tools=[call_compilot],
+    tools=[call_compilot, proximity_check],
     model=model
 )
 
